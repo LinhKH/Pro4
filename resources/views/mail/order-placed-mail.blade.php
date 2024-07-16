@@ -168,7 +168,7 @@ For what reason would it be advisable for me to think about business content? Th
                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                     <tr>
                         <td align="center">
-                            <img src="{{ asset('frontend/images/vendor_details_banner.jpg') }}" width="120" height="100" style="display: block; border: 0px;"/>
+                            <img src="https://img.icons8.com/?size=100&id=95473&format=png&color=000000" width="100" height="100" style="display: block; border: 0px;"/>
                         </td>
                     </tr>
                     <tr>

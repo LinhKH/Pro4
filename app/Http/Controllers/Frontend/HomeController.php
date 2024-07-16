@@ -27,7 +27,7 @@ class HomeController extends Controller
             return Slider::where('status', 1)->orderBy('serial', 'asc')->get();
         });
 
-        $flashSaleDate = FlashSale::first();
+        $flashSaleDate = FlashSale::orderBy('created_at', 'DESC')->first();
 
         $flashSaleItems = FlashSaleItem::where('show_at_home', 1)->where('status', 1)->pluck('product_id')->toArray();
 

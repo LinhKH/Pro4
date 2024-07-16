@@ -1,3 +1,5 @@
+
+@if ( $flashSaleDate['end_date'] >= date('Y-m-d') )
 <section id="wsus__flash_sell" class="wsus__flash_sell_2">
     <div class=" container">
         <div class="row">
@@ -24,7 +26,7 @@
         </div>
     </div>
 </section>
-
+@endif
 
 @push('scripts')
 <script>

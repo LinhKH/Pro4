@@ -37,29 +37,39 @@
                 <div class="row">
 
                 </div>
-
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="wsus__section_header rounded-0">
-                            <h3>flash sell</h3>
-                            <div class="wsus__offer_countdown">
-                                <span class="end_text">ends time :</span>
-                                <div class="simply-countdown simply-countdown-one"></div>
+                @if ( $flashSaleDate['end_date'] >= date('Y-m-d') )
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="wsus__section_header rounded-0">
+                                <h3>flash sell</h3>
+                                <div class="wsus__offer_countdown">
+                                    <span class="end_text">ends time :</span>
+                                    <div class="simply-countdown simply-countdown-one"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="row">
+                        @php
+                            $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
+                            ->with(['variants', 'category', 'productImageGalleries'])
+                            ->whereIn('id', $flashSaleItems)->get();
+                        @endphp
+                        @foreach ($products as $product)
+                            <x-product-card :product="$product" />
+                        @endforeach
+                    </div>
+                    
+                @else
                 <div class="row">
-                    @php
-                        $products = \App\Models\Product::withAvg('reviews', 'rating')->withCount('reviews')
-                    ->with(['variants', 'category', 'productImageGalleries'])
-                        ->whereIn('id', $flashSaleItems)->get();
-                    @endphp
-                    @foreach ($products as $product)
-                        <x-product-card :product="$product" />
-                    @endforeach
+                    <div class="col-xl-12">
+                        <div class="wsus__section_header rounded-0">
+                            <h3>No Product in flash sell</h3>
+                        </div>
+                    </div>
                 </div>
+                @endif
                 {{-- <div class="mt-5">
                     @if ($flashSaleItems->hasPages())
                         {{$flashSaleItems->links()}}
