@@ -143,7 +143,7 @@ Route::group(['middleware' =>['auth', 'verified'], 'prefix' => 'user', 'as' => '
     Route::get('cod/payment', [PaymentController::class, 'payWithCod'])->name('cod.payment');
 
     Route::get('test', function () {
-        // broadcast(new RTOrderPlacedNotificationEvent(Order::find(12)));
+        broadcast(new RTOrderPlacedNotificationEvent(Order::find(15)));
         broadcast(new OrderPlacedNotificationEvent(15));
     });
 });
