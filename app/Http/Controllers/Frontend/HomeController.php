@@ -18,6 +18,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Response;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
@@ -55,25 +56,30 @@ class HomeController extends Controller
 
         $recentBlogs = Blog::with(['category', 'user'])->where('status',1)->orderBy('id', 'DESC')->take(8)->get();
 
-        return view('frontend.home.home',
-            compact(
-                'sliders',
-                'flashSaleDate',
-                'flashSaleItems',
-                'popularCategory',
-                'brands',
-                'typeBaseProducts',
-                'categoryProductSliderSectionOne',
-                'categoryProductSliderSectionTwo',
-                'categoryProductSliderSectionThree',
+        // return view('frontend.home.home',
+        //     compact(
+        //         'sliders',
+        //         'flashSaleDate',
+        //         'flashSaleItems',
+        //         'popularCategory',
+        //         'brands',
+        //         'typeBaseProducts',
+        //         'categoryProductSliderSectionOne',
+        //         'categoryProductSliderSectionTwo',
+        //         'categoryProductSliderSectionThree',
 
-                'homepage_secion_banner_one',
-                'homepage_secion_banner_two',
-                'homepage_secion_banner_three',
-                'homepage_secion_banner_four',
-                'recentBlogs'
+        //         'homepage_secion_banner_one',
+        //         'homepage_secion_banner_two',
+        //         'homepage_secion_banner_three',
+        //         'homepage_secion_banner_four',
+        //         'recentBlogs'
 
-            ));
+        //     ));
+
+            return Inertia::render('Home/Index', [
+                'sliders' => $sliders
+            ]);
+            
     }
 
     public function getTypeBaseProduct()

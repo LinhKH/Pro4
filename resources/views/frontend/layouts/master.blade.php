@@ -8,8 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <title>
-        @yield('title')
+    <title inertia>
+        {{-- @yield('title') --}}
     </title>
     <link rel="icon" type="image/png" href="{{asset($logoSetting->favicon)}}">
     <link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}">
@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/rtl.css')}}">
     @endif
     @vite(['resources/js/app.js'])
+    @inertiaHead
 </head>
 
 <body>
@@ -58,7 +59,7 @@
     <!--============================
         Main Content Start
     ==============================-->
-        @yield('content')
+        @inertia
     <!--============================
        Main Content End
     ==============================-->
